@@ -7,3 +7,6 @@
 
 # These are compiled artifacts
 /build
+
+#ignore compiled files
+out/
