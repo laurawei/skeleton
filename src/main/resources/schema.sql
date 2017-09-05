@@ -7,3 +7,4 @@ CREATE TABLE receipts (
 
   PRIMARY KEY (id)
 );
+

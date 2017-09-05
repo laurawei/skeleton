@@ -1,0 +1,38 @@
+package controllers;
+
+import api.ReceiptResponse;
+import dao.ReceiptDao;
+import generated.tables.records.ReceiptsRecord;
+
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
+import java.util.List;
+
+
+import static java.util.stream.Collectors.toList;
+
+@Path("/tag/{tag}")
+@Consumes(MediaType.APPLICATION_JSON)
+@Produces(MediaType.APPLICATION_JSON)
+
+public class TagController {
+    final ReceiptDao tags;
+
+    public TagController(ReceiptDao tags) {
+        this.tags = tags;
+    }
+
+    @PUT
+    public void toggleTag(@PathParam("tag") String tagName, @Valid @NotNull int id) {
+        tags.insert(tagName, id);
+    }
+
+     @GET
+     public List<ReceiptResponse> getReceipts (@PathParam("tag") String tagName){
+         List<ReceiptsRecord> receiptRecords = tags.getAllReceipts();
+         return receiptRecords.stream().map(ReceiptResponse::new).collect(toList());
+      }
+
+}
