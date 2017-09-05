@@ -48,10 +48,10 @@ public class ReceiptDao {
     public List<ReceiptsRecord> getReceiptsByTag(String tagName) {
         ArrayList<Integer> ids = hm.get(tagName);
         if (ids == null || ids.size() == 0) return new ArrayList<>();
-        List<ReceiptsRecord> res = new ArrayList<>();
+        List<ReceiptsRecord> outputList = new ArrayList<>();
         for (ReceiptsRecord receipt : dsl.selectFrom(RECEIPTS).fetch()){
-            if (ids.contains(receipt.getId())) res.add(receipt);
+            if (ids.contains(receipt.getId())) outputList.add(receipt);
         }
-        return res;
+        return outputList;
     }
 }
