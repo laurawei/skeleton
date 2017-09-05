@@ -13,7 +13,7 @@ import java.util.List;
 
 import static java.util.stream.Collectors.toList;
 
-@Path("/tag/{tag}")
+@Path("/tags/{tag}")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 
